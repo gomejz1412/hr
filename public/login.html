@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .login-form {
+            background-color: var(--input-bg);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border-color);
+        }
+
+        .passcode-input {
+            margin: 1rem 0;
+        }
+
+        #errorMessage {
+            color: #dc2626;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Enter Passcode</h1>
+            <div class="input-group passcode-input">
+                <input type="password" id="passcode" placeholder="Enter passcode" required>
+            </div>
+            <button id="loginBtn">Access App</button>
+            <div id="errorMessage">Incorrect passcode</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const passcode = document.getElementById('passcode').value;
+            if (passcode === '282828') {
+                sessionStorage.setItem('authenticated', 'true');
+                window.location.href = '/';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+
+        document.getElementById('passcode').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('loginBtn').click();
+            }
+        });
+
+        // Redirect to login if not authenticated
+        if (window.location.pathname !== '/login.html' && !sessionStorage.getItem('authenticated')) {
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+</html>

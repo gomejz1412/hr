@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-panel">
+            <h1>AI Image Generator</h1>
+            <form id="generateForm">
+                <div class="input-group">
+                    <label for="prompt">Prompt</label>
+                    <textarea id="prompt" name="prompt" required placeholder="Enter your prompt here..."></textarea>
+                    <button type="button" id="randomPrompt" class="secondary-btn">Generate Random Prompt</button>
+                </div>
+
+                <div class="parameters">
+                    <div class="input-group">
+                        <label for="model">Model</label>
+                        <select id="model" name="model">
+                            <option value="schnell">schnell</option>
+                            <option value="dev">dev</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="aspect_ratio">Aspect Ratio</label>
+                        <select id="aspect_ratio" name="aspect_ratio">
+                            <option value="1:1">1:1</option>
+                            <option value="9:16">9:16</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="num_outputs">Number of Outputs (1-4)</label>
+                        <input type="number" id="num_outputs" name="num_outputs" min="1" max="4" value="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="guidance_scale">Guidance Scale (0-10)</label>
+                        <input type="number" id="guidance_scale" name="guidance_scale" min="0" max="10" step="0.1" value="7">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="num_inference_steps">Inference Steps (1-50)</label>
+                        <input type="number" id="num_inference_steps" name="num_inference_steps" min="1" max="50" value="40">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="go_fast">
+                            <input type="checkbox" id="go_fast" name="go_fast">
+                            Go Fast Mode
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="generateBtn">Generate Image</button>
+            </form>
+        </div>
+
+        <div class="preview-panel">
+            <div id="loadingIndicator" class="hidden">
+                <div class="spinner"></div>
+                <p>Generating images...</p>
+            </div>
+            <div id="imageGallery"></div>
+            <div id="error" class="error hidden"></div>
+        </div>
+    </div>
+    <script>
+        // Check authentication
+        if (!sessionStorage.getItem('authenticated')) {
+            window.location.href = '/login.html';
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
