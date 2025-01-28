@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: hr-app
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    autoDeploy: true
+    envVars:
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false
