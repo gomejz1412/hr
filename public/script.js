@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Quick generate button functionality
+    document.getElementById('quickGenerate').addEventListener('click', function() {
+        // Trigger form submission with default values
+        document.getElementById('generateBtn').click();
+    });
     const form = document.getElementById('generateForm');
     const generateBtn = document.getElementById('generateBtn');
     const loadingIndicator = document.getElementById('loadingIndicator');
